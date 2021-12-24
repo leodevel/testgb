@@ -35,7 +35,7 @@ class SwaggerConfig {
             "Sistema para os revendedores(as) cadastrarem suas compras e acompanhar o retorno de seu cashback",
             "1.0",
             "Terms of service",
-            Contact("Leonardo Barbosa", "www.linkedin.com/in/leonardo-dos-santos-barbosa-4845bbba", "leobar1995@gmail.com"),
+            Contact("Leonardo Barbosa", "github.com/leodevel/testgb", "leobar1995@gmail.com"),
             "License of API",
             "API license URL",
             Collections.emptyList()
