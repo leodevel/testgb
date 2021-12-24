@@ -8,6 +8,7 @@ import br.com.leodevel.testgb.helper.removeCpfFormatting
 import br.com.leodevel.testgb.model.Dealer
 import br.com.leodevel.testgb.model.toResponseDTO
 import br.com.leodevel.testgb.repository.DealerRepository
+import org.slf4j.LoggerFactory
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 
@@ -16,7 +17,11 @@ class DealerService(private val dealerRepository: DealerRepository,
                     private val passwordEncoder: PasswordEncoder
 ) {
 
+    private val logger = LoggerFactory.getLogger(javaClass)
+
     fun save(dealerRequestDTO: DealerRequestDTO): DealerResponseDTO {
+
+        logger.info("save dealer cpf {}", dealerRequestDTO.cpf)
 
         var dealer = buildDealer(dealerRequestDTO)
         return dealerRepository.save(dealer).toResponseDTO()
@@ -24,6 +29,8 @@ class DealerService(private val dealerRepository: DealerRepository,
     }
 
     fun updatePassword(updatePasswordRequestDTO: UpdatePasswordRequestDTO) {
+
+        logger.info("update password dealer cpf {}", updatePasswordRequestDTO.cpf)
 
         updatePasswordRequestDTO.cpf = updatePasswordRequestDTO.cpf.removeCpfFormatting()
 
@@ -54,6 +61,7 @@ class DealerService(private val dealerRepository: DealerRepository,
     }
 
     fun findByCpf(cpf: String): DealerResponseDTO? {
+        logger.info("find dealer cpf {}", cpf)
         return dealerRepository.findByCpf(cpf)?.toResponseDTO()
     }
 

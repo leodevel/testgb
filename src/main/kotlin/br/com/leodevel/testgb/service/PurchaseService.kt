@@ -9,6 +9,7 @@ import br.com.leodevel.testgb.model.Purchase
 import br.com.leodevel.testgb.model.toResponseDTO
 import br.com.leodevel.testgb.repository.DealerRepository
 import br.com.leodevel.testgb.repository.PurchaseRepository
+import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
@@ -22,7 +23,11 @@ class PurchaseService(
     @Value("\${purchase.approved.cpfs}") private val purchaseApprovedCpfs: List<String>
 ) {
 
+    private val logger = LoggerFactory.getLogger(javaClass)
+
     fun save(purchaseRequestDTO: PurchaseRequestDTO): PurchaseResponseDTO {
+
+        logger.info("save purchase from dealer cpf {}", purchaseRequestDTO.dealerCpf)
 
         var purchase = buildPurchase(purchaseRequestDTO)
         return purchaseRepository.save(purchase).toResponseDTO()
@@ -65,11 +70,15 @@ class PurchaseService(
     }
 
     private fun findById(id: String?): PurchaseResponseDTO?{
+        logger.info("find purchase by id {}", id)
+
         if (id.isNullOrEmpty()) return null
         return purchaseRepository.findByIdOrNull(id)?.toResponseDTO()
     }
 
     fun findByDealerCpf(cpf: String): List<PurchaseResponseDTO> {
+        logger.info("find purchase by dealer cpf {}", cpf)
+
         val dealer = dealerRepository.findByCpf(cpf.removeCpfFormatting()!!)
             ?: throw EntityNotFoundException("dealer.not.found")
         return purchaseRepository.findByDealerId(dealer.id!!).toResponseDTO()
