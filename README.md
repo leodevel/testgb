@@ -2,6 +2,8 @@
 
 Esse projeto foi desenvolvido para a etapa de teste do processo seletivo do Grupo Boticário. Trata-se de uma API para os revendedores(as) cadastrarem suas compras e acompanhar o retorno de seu cashback.
 
+O Swagger da API pode ser acessado através do link: http://167.99.1.51:5500/swagger-ui.html
+
 ## Ferramentas/Linguagens
 
 Para o desenvolvimento dessa API, foi utilizado:
