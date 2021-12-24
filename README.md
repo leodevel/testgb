@@ -6,13 +6,14 @@ Esse projeto foi desenvolvido para a etapa de teste do processo seletivo do Grup
 
 Para o desenvolvimento dessa API, foi utilizado:
 
-- Kotlin
-- Spring Boot
-- Spring Security
-- Spring Validation
-- Swagger
-- MongoDB
-- JWT
+- **Kotlin**: Linguagem
+- **Spring Boot**: Framework 
+- **Spring Security**: Para adicionar autenticação e autorização à API
+- **Spring Validation**: Para validar as informações do contrato
+- **Swagger**: Para gerar documentação da API
+- **MongoDB**: Banco de dados não relacional para armazenar os dados
+- **JWT**: Autenticação via token
+- **JUnit**: Framework para criação de testes
 
 ## Arquitetura
 
@@ -51,6 +52,6 @@ As rotas disponíveis para essa API são:
 - **POST /purchase**: Rota para inserir uma nova compra de um revendedor
 - **GET /purchase/dealer/{cpf}**: Rota para consultar todas as compras de um revendedor
 
-Observações: As únicas rotas públicas são **POST /auth/login** e **POST /dealer**. As demais precisam estar autenticada, ou seja, precisa passar no header o Authorization com o token.
+Observações: As únicas rotas públicas são **POST /auth/login** e **POST /dealer**. As demais precisam de autenticação, ou seja, precisa passar no header o Authorization com o token.
 
 ![img.png](images/swagger.png)
